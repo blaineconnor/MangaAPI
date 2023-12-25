@@ -8,6 +8,9 @@ namespace MangaAPI.Persistance.Mapper
     {
        public AutoMapper() {
             CreateMap<CreateMangaDto, Manga>().ReverseMap();
+            CreateMap<UpdateMangaDto, Manga>().ReverseMap();
+            CreateMap<GetMangaDto, Manga>().ReverseMap();
+            CreateMap<GetAllMangaDto, Manga>().ReverseMap();  
        }
     }
 }

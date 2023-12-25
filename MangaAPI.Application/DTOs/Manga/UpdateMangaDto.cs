@@ -1,9 +1,14 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MangaAPI.Application.DTOs.Manga
 {
-    public record CreateMangaDto
+    public class UpdateMangaDto
     {
+        public Guid Id { get; set; }
         public string? Title { get; init; }
         public string? Description { get; init; }
         public string? Author { get; init; }

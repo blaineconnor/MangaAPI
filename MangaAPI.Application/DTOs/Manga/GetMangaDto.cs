@@ -1,8 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MangaAPI.Application.DTOs.Manga
 {
-    public record CreateMangaDto
+    public class GetMangaDto
     {
         public string? Title { get; init; }
         public string? Description { get; init; }

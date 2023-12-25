@@ -1,6 +1,9 @@
+using AutoMapper;
 using MangaAPI.Application.DTOs.Manga;
 using MangaAPI.Application.Services;
+using MangaAPI.Domain.Entities;
 using MangaAPI.Persistance.Contexts;
+using MangaAPI.Persistance.Migrations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MangaAPI.Controllers
@@ -11,29 +14,39 @@ namespace MangaAPI.Controllers
     {
 
         private readonly IMangaService _mangaService;
-        private readonly MangaAPIDbContext _context;
-
-        public MangaController(IMangaService mangaService, MangaAPIDbContext context)
+ 
+        public MangaController(IMangaService mangaService )
         {
             _mangaService = mangaService;
-            _context = context;
+            
+             
         }
-
-        [HttpPost(Name = "CreateManga")]
+        [HttpGet("GetAllManga")]
+        public IActionResult GetAllManga() 
+        {
+            var responce = _mangaService.GetAllManga();
+            return Ok(responce.Result);
+        }
+        [HttpGet("GetManga/{id:Guid}")]
+        public  IActionResult GetManga([FromRoute] Guid id)
+        {
+            var response = _mangaService.GetManga(id);
+            return Ok(response.Result);
+        }
+        [HttpPost("CreateManga")]
         public IActionResult CreateManga([FromBody] CreateMangaDto createMangaDto) 
         {
             _mangaService.CreateManga(createMangaDto);
             return Ok();
         }
-
-        [HttpGet("get/{mangaId}")]
-        public async  Task<IActionResult> GetManga([FromRoute] Guid mangaId)
+        [HttpPut("UpdateManga")]
+        public IActionResult UpdateManga([FromBody] UpdateMangaDto updateMangaDto)
         {
-            var response = await _context.Mangas.FindAsync(mangaId);
-
-            return Ok(response);
-
+            _mangaService.UpdateManga(updateMangaDto);
+            return Ok();
         }
+        
+
 
     }
 }
