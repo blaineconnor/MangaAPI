@@ -45,6 +45,12 @@ namespace MangaAPI.Controllers
             _mangaService.UpdateManga(updateMangaDto);
             return Ok();
         }
+        [HttpDelete("DeleteManga/{id:Guid}")]
+        public IActionResult DeleteManga([FromRoute] Guid id) 
+        {
+            _mangaService.DeleteManga(id);
+            return Ok();
+        }
         
 
 

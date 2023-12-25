@@ -5,6 +5,7 @@ using MangaAPI.Infrastructure.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using MangaAPI.Persistance.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace MangaAPI.Application.Services
 {
@@ -49,9 +50,15 @@ namespace MangaAPI.Application.Services
         }
         public async Task<List<GetAllMangaDto>> GetAllManga()
         {
-            var manga = await _context.Mangas.ToList();
-            var mappedManga = _mapper.Map<GetAllMangaDto>(manga);
+            var manga = await _context.Mangas.ToListAsync();
+            var mappedManga = _mapper.Map<List<GetAllMangaDto>>(manga);
             return mappedManga;
+        }
+        public async Task DeleteManga(Guid id)
+        {
+            var manga = _context.Mangas.Where(manga => manga.Id == id).FirstOrDefault();
+            _context.Remove(manga);
+            await _context.SaveChangesAsync();
         }
     }
 }

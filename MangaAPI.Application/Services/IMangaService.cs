@@ -8,6 +8,7 @@ namespace MangaAPI.Application.Services
         Task UpdateManga(UpdateMangaDto updateMangaDto);
         Task<GetMangaDto> GetManga(Guid id);
         Task<List<GetAllMangaDto>> GetAllManga();
+        Task DeleteManga (Guid id);
         
     }
 }
