@@ -31,12 +31,6 @@ namespace MangaAPI.Application.Services
         {
             
                 var manga = _context.Mangas.Where(x=>x.Id ==  updateMangaDto.Id).FirstOrDefault();
-
-                if (manga == null)
-                {
-                    Console.WriteLine("Güncellenmesi istenen manga bulunamadı.");
-                    return;
-                }
                 _mapper.Map(updateMangaDto, manga);
                 _context.Update(manga);
                 await _context.SaveChangesAsync();

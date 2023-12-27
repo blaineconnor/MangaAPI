@@ -14,13 +14,13 @@ namespace MangaAPI.Controllers
     {
 
         private readonly IMangaService _mangaService;
- 
+        
         public MangaController(IMangaService mangaService )
         {
             _mangaService = mangaService;
             
-             
         }
+        #region manga controller
         [HttpGet("GetAllManga")]
         public IActionResult GetAllManga() 
         {
@@ -51,8 +51,6 @@ namespace MangaAPI.Controllers
             _mangaService.DeleteManga(id);
             return Ok();
         }
-        
-
-
+        #endregion
     }
 }
