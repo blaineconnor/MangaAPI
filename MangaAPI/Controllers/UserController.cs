@@ -34,7 +34,7 @@ namespace MangaAPI.API.Controllers
         public IActionResult CreateUser([FromBody] UserDto userDto)
         {
             _userService.CreateUser(userDto);
-            return Ok();
+            return Ok("aa");
         }
         [HttpPut("UpdateUser")]
         public IActionResult UpdateUser([FromBody] UserDto userDto)
