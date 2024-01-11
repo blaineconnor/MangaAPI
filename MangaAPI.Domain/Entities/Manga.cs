@@ -3,7 +3,7 @@
 
 namespace MangaAPI.Domain.Entities
 {
-    public class Manga : BaseEntity
+    public class Manga : AuditableEntity
     {
         public string Title { get; set; }
         public string Author { get; set; }
